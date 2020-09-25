@@ -22,3 +22,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 */
 Route::get('/','App\Http\Controllers\api@testapi');
+
+Route::get('/dist','App\Http\Controllers\api@distapi');

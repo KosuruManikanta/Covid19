@@ -25,14 +25,35 @@
       </tr>
     </thead>
     <tbody>
+      <?php $count = 0;
+?>
        @foreach($respon as $respon)
       <tr>
-        <td class="table-primary">{{$respon->state}}</td>
-        <td class="table-danger">{{$respon->active}}</td>
-        <td class="table-success">{{$respon->cured}}</td>
-        <td class="table-active">{{$respon->deaths}}</td>
-        <td>{{$respon->noOfCases}}</td>
+        <td class="table-primary" data-toggle="modal" data-target="#myModal-{{$count}}">{{$respon->state}}</td>
+        <td class="table-danger" data-toggle="modal" data-target="#myModal">{{$respon->active}}</td>
+        <td class="table-success" data-toggle="modal" data-target="#myModal">{{$respon->cured}}</td>
+        <td class="table-active" data-toggle="modal" data-target="#myModal">{{$respon->deaths}}</td>
+        <td data-toggle="modal" data-target="#myModal">{{$respon->noOfCases}}</td>
+         <div class="modal fade" id="myModal-{{$count}}" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+<p>{{$respon1[$respon->state]["districtData"][$respon1 =>value]}}
+        </p></div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
       </tr>
+      {{$count++}}
       @endforeach
     </tbody>
     <script type="text/javascript">
