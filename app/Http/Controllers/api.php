@@ -72,17 +72,19 @@ $response = $client->request('GET', '/state_district_wise.json')->getBody()->get
 $respon= json_decode($response,true);
 
 $tt=array();
-
+$j=array();
+$state=array();
 foreach($respon as $item=>$k) {
 
+$state[] = $item;
 	if ($item == "Uttar Pradesh") {
 		# code...
 	
     foreach ($k as $StateName => $StateData) {
               foreach ((array)$StateData as $key => $val) {
 
-$j = $val;
-$tt[]=$j;
+$tt[]=$val;
+$j[]=$key;
 #$tt = $val['deceased'];
 
     #       if($key == "Ballari")
@@ -99,8 +101,9 @@ $tt[]=$j;
     }
 }
 }
-$rr=json_decode(json_encode($tt),true);
-return $rr;
+$val=json_decode(json_encode($tt),true);
+$key=json_decode(json_encode($j),true);
+return $state;
 #return view('covid')->with('respon',$respon);	
 
 #return var_dump($respon[]);
