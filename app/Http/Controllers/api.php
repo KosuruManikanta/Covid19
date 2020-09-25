@@ -70,22 +70,54 @@ $client = new Client(['base_uri' => 'https://api.covid19india.org/']);
 $response = $client->request('GET', '/state_district_wise.json')->getBody()->getContents();
         
 $respon= json_decode($response,true);
+
+$tt=array();
+
+foreach($respon as $item=>$k) {
+
+	if ($item == "Uttar Pradesh") {
+		# code...
+	
+    foreach ($k as $StateName => $StateData) {
+              foreach ((array)$StateData as $key => $val) {
+
+$j = $val;
+$tt[]=$j;
+#$tt = $val['deceased'];
+
+    #       if($key == "Ballari")
+#{
+          # return [$key,$item,$val['deceased']];
+ #}        
+    	#$id[] = $key;
+      #  return $key; 
+         
+    }
+
+
+    	
+    }
+}
+}
+$rr=json_decode(json_encode($tt),true);
+return $rr;
 #return view('covid')->with('respon',$respon);	
 
 #return var_dump($respon[]);
-    $arr = json_decode($respon, true);
-$ids = array();
-get_ids($respon);
-return $ids;
+#    $arr = json_decode($response, true);
+#$ids = array();
+#$this->get_ids($arr);
+#return $ids;
     }
 
-public function get_ids($respon){
+public function get_ids($arr){
     global $ids;
-    foreach($respon as $key => $value){
-        if($key == 'node')
+    foreach($arr as $key => $value){
+        if($key == 'Bihar')
             $ids[] = $value['id'];
+        #return $value['id'];
         if(is_array($value))
-            get_ids($value);    
+            $this->get_ids($value);    
     }
 }
 

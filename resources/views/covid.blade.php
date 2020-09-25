@@ -40,10 +40,30 @@
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
+          <p>{{$respon->state}}</p>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-<p>{{$respon1[$respon->state]["districtData"][$respon1 =>value]}}
+
+
+
+@foreach($respon as $item=>$k) 
+  @if ($item == $respon->state) 
+    <p>hello</p>
+  
+    @foreach ($k as $StateName => $StateData) 
+              @foreach ($StateData as $key => $val)
+
+ <p>hello</p>     
+         
+    @endforeach
+
+
+      
+    @endforeach
+@endif
+@endforeach
+
         </p></div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
