@@ -1,3 +1,5 @@
+      <?php $count = 0;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,46 +27,32 @@
       </tr>
     </thead>
     <tbody>
-      <?php $count = 0;
-?>
+
        @foreach($respon as $respon)
       <tr>
-        <td class="table-primary" data-toggle="modal" data-target="#myModal-{{$count}}">{{$respon->state}}</td>
+        <td class="table-primary" data-toggle="modal" data-target="#myModal-{{$respon->state}}">{{$respon->state}}</td>
         <td class="table-danger" data-toggle="modal" data-target="#myModal">{{$respon->active}}</td>
         <td class="table-success" data-toggle="modal" data-target="#myModal">{{$respon->cured}}</td>
         <td class="table-active" data-toggle="modal" data-target="#myModal">{{$respon->deaths}}</td>
         <td data-toggle="modal" data-target="#myModal">{{$respon->noOfCases}}</td>
-         <div class="modal fade" id="myModal-{{$count}}" role="dialog">
+         </tr>
+       </tbody>
+
+<div class="modal fade" id="myModal-{{$respon->state}}" role="dialog">
+
     <div class="modal-dialog">
     
-      <!-- Modal content-->
+     
       <div class="modal-content">
         <div class="modal-header">
           <p>{{$respon->state}}</p>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
+<p>{{$respon->state}}</p>
 
 
-
-@foreach($respon as $item=>$k) 
-  @if ($item == $respon->state) 
-    <p>hello</p>
-  
-    @foreach ($k as $StateName => $StateData) 
-              @foreach ($StateData as $key => $val)
-
- <p>hello</p>     
-         
-    @endforeach
-
-
-      
-    @endforeach
-@endif
-@endforeach
-
-        </p></div>
+        </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
@@ -72,19 +60,9 @@
       
     </div>
   </div>
-      </tr>
-      {{$count++}}
-      @endforeach
-    </tbody>
-    <script type="text/javascript">
-      $(document).ready(function() {
-    $('#example').DataTable();
-} );
-      
-    </script>
-  </table>
+  {{$count++}}
+ @endforeach
+</table>
 </div>
-
-
 </body>
 </html>

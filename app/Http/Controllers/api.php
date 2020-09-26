@@ -61,7 +61,7 @@ $respon= json_decode($response);
 return view('covid')->with('respon1',$respon1)->with('respon',$respon);	
 #return $respon;
     }
-
+  
     public function distapi(Request $request)
     {
 
@@ -77,7 +77,7 @@ $state=array();
 foreach($respon as $item=>$k) {
 
 $state[] = $item;
-	if ($item == "Uttar Pradesh") {
+	if ($item == "Andhra Pradesh") {
 		# code...
 	
     foreach ($k as $StateName => $StateData) {
@@ -85,6 +85,7 @@ $state[] = $item;
 
 $tt[]=$val;
 $j[]=$key;
+
 #$tt = $val['deceased'];
 
     #       if($key == "Ballari")
@@ -103,7 +104,7 @@ $j[]=$key;
 }
 $val=json_decode(json_encode($tt),true);
 $key=json_decode(json_encode($j),true);
-return $state;
+return [$state,$key,$val['5']['delta']];
 #return view('covid')->with('respon',$respon);	
 
 #return var_dump($respon[]);
