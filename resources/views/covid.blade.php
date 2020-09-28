@@ -30,7 +30,7 @@
 
        @foreach($respon as $respon)
       <tr>
-        <td class="table-primary" data-toggle="modal" data-target="#myModal-{{$respon->state}}">{{$respon->state}}</td>
+        <td class="table-primary" data-toggle="modal" data-target="#myModal-{{$count}}">{{$respon->state}}</td>
         <td class="table-danger" data-toggle="modal" data-target="#myModal">{{$respon->active}}</td>
         <td class="table-success" data-toggle="modal" data-target="#myModal">{{$respon->cured}}</td>
         <td class="table-active" data-toggle="modal" data-target="#myModal">{{$respon->deaths}}</td>
@@ -38,7 +38,7 @@
          </tr>
        </tbody>
 
-<div class="modal fade" id="myModal-{{$respon->state}}" role="dialog">
+<div class="modal fade" id="myModal-{{$count}}" role="dialog">
 
     <div class="modal-dialog">
     
@@ -49,7 +49,37 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-<p>{{$respon->state}}</p>
+@foreach($respon1 as $item=>$k)
+
+  @if ($item == $respon->state)
+  
+    @foreach ($k as $StateName => $StateData)
+              @foreach ((array)$StateData as $key => $val)
+
+              {{$key}}
+              <br>
+@foreach((array)$val as $kk => $va)
+@if(!((string)$kk == "delta"))
+              {{(string)$kk}}
+@endif
+              <br>
+              @if(!is_array($va))
+              
+{{(string)$va}}
+@endif
+<br>
+@endforeach
+
+    @endforeach
+
+
+      
+    @endforeach
+
+
+@endif
+@endforeach
+
 
 
         </div>
